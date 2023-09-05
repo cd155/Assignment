@@ -1,5 +1,4 @@
 body {
-    
     font-family: 'Karla', sans-serif;
     margin-bottom: 5rem;
     margin-left: 5%;
@@ -38,7 +37,7 @@ ul {
 }
 
 a {
-    color: #EE9972;
+    color: #244d87;
     text-decoration: none;
 }
 
@@ -148,7 +147,7 @@ input {
 #news {
     background-size: cover;
     background-position: 75%;
-    color: white;
+    background-color: white;
     min-height: 200px;
     text-align: center;
 }
@@ -156,7 +155,7 @@ input {
 #news p {
     font-size: 1rem;
     margin: 0;
-    color: #333333;
+    color: black;
     text-align: left;
 }
 
