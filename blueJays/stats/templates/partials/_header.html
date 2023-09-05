@@ -1,7 +1,11 @@
 {% load static %}
 <nav>
   <ul>
-    <li><img src="{% static 'img/homebase-logo.png' %}" width="150" height="35"/></li>
+    <li>
+      <a href="{% url 'home' %}">
+        <img src="{% static 'img/homebase-logo.png' %}" width="150" height="35" />
+      </a>
+    </li>
     <li><a href="{% url 'home' %}">Teams</a></li>
     <li><a href="{% url 'home' %}">Leaderboards</a></li>
   </ul>
