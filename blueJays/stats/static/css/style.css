@@ -299,18 +299,18 @@ footer p {
     color: #244d87;
 }
 
-tr:first-child th:first-child {
+#standing tr:first-child th:first-child {
     border-top-left-radius: 10px;
 }
 
-tr:first-child th:last-child {
+#standing tr:first-child th:last-child {
     border-top-right-radius: 10px;
 }
 
-tr:last-child td:first-child {
+#standing tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
 }
 
-tr:last-child td:last-child {
+#standing tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
