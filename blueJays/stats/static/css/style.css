@@ -2,8 +2,8 @@ body {
     font-family: 'Karla', sans-serif;
     margin-top: 0rem;
     margin-bottom: 5rem;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 0;
+    margin-right: 0;
     background-color: #244d87;
 }
 
@@ -62,10 +62,12 @@ nav {
 
 nav ul {
     list-style: none;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-align: right;
     padding-inline-start: 0rem;
     margin-bottom: 0px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 nav ul li {
@@ -109,6 +111,11 @@ article img {
 
 article ul {
     list-style: none;
+}
+
+main {
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 main article {
