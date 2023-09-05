@@ -3,6 +3,7 @@
 
 {% block content %}
 
+<h2>Teams</h2>
 {% for i in board_n %}
 <section>
   {% include 'partials/_standing.html' with title="AL East"%}
@@ -10,7 +11,8 @@
 </section>
 {% endfor %}
 
-<section>
+<h2>News</h2>
+<section>  
   {% for i in news_n %}
   <article id="news">
     <img src="{% static 'img/news_holder.png' %}">
