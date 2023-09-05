@@ -2,15 +2,8 @@
 {% load static %}
 
 {% block content %}
-<section>
-  <article id="hero">
-    <h1 class="heading_shadow">SPECIAL OFFER</h1>
-    <p>
-      30% Off This Weekend
-    </p>
-    <a href="#" class="cta"> Book now </a>
-  </article>
-</section>
+
+{% for i in board_n %}
 <section>
   <article>
     <h2>Our New Menu</h2>
@@ -32,17 +25,18 @@
       <a href="{% url 'home' %}">Book your table now</a>
     </p>
   </article>
-  <article>
-    <h2>Opening Hours</h2>
-    <img src="{% static 'img/head_chef.jpg' %}">
+</section>
+{% endfor %}
+
+<section>
+  {% for i in news_n %}
+  <article id="news">
+    <img src="{% static 'img/news_holder.png' %}">
+    <a href="#" > Book now </a>
     <p>
-      The Little Lemon Restaurant is open 7 days a week, except for public holidays.
+      David Adler - Dec 2 2022
     </p>
-    <ul>
-      <li>Mon - Fri: 2pm - 10pm</li>
-      <li>Sat: 2pm - 11pm</li>
-      <li>Sun: 2pm - 9pm</li>
-    </ul>
   </article>
+  {% endfor %}
 </section>
 {% endblock %}
