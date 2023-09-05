@@ -316,3 +316,13 @@ footer p {
 #standing tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
+
+#teambanner li {
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+#playerbanner li {
+    display: inline-block;
+    margin: 0.5rem;
+}
