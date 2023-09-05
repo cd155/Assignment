@@ -5,26 +5,8 @@
 
 {% for i in board_n %}
 <section>
-  <article>
-    <h2>Our New Menu</h2>
-    <img src="{% static 'img/Grill.jpg' %}">
-    <p>
-      Our menu consists of 12-15 seasonal items based on Italian, Greek, and Turkish culture.
-    </p>
-    <p>
-      <a href="{% url 'home' %}">See our new menu</a>
-    </p>
-  </article>
-  <article>
-    <h2>Book a table</h2>
-    <img src="{% static 'img/salad.jpg' %}">
-    <p>
-      Reserve your table for an Italian, Greek, and Turkish dining experience.
-    </p>
-    <p>
-      <a href="{% url 'home' %}">Book your table now</a>
-    </p>
-  </article>
+  {% include 'partials/_standing.html' %}
+  {% include 'partials/_standing.html' %}
 </section>
 {% endfor %}
 
@@ -32,11 +14,14 @@
   {% for i in news_n %}
   <article id="news">
     <img src="{% static 'img/news_holder.png' %}">
-    <a href="#" > Book now </a>
+    <p>
+      <a href="#" > news links </a>
+    </p>
     <p>
       David Adler - Dec 2 2022
     </p>
   </article>
   {% endfor %}
 </section>
+
 {% endblock %}
