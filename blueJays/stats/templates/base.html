@@ -1,4 +1,4 @@
-<!-- {% load static %} -->
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,16 +17,16 @@
     <link
       rel="shortcut icon"
       type="image/png"
+      href="{% static 'img/favicon.ico' %}"
     />
-    <!-- href="{% static 'img/favicon.ico' %}" -->
 
     <!-- Include your CSS files here -->
     <link
       rel="preload"
       as="style"
+      href="{% static 'css/style.css' %}"
       onload="this.rel = 'stylesheet'"
     />
-    <!-- href="{% static 'css/style.css' %}" -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,9 +38,11 @@
 
   <body>
     <!--Header content-->
+    {% include 'partials/_header.html' %}
 
     <main>{% block content %} {% endblock %}</main>
 
     <!--Footer content-->
+    {% include 'partials/_footer.html' %}
   </body>
 </html>
