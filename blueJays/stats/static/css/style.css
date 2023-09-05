@@ -150,13 +150,13 @@ input {
     color: white;
     min-height: 200px;
     text-align: center;
-    ;
 }
 
 #news p {
-    font-size: 2rem;
+    font-size: 1rem;
     margin: 0;
-    text-shadow: 2px 2px 4px #333333;
+    color: #333333;
+    text-align: left;
 }
 
 .cta {
