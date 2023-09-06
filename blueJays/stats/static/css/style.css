@@ -324,7 +324,6 @@ footer p {
 
 #teambanner li {
     display: inline-block;
-    margin: 0.5rem;
 }
 
 #teambanner li:last-child {
@@ -341,7 +340,6 @@ footer p {
 
 #playerbanner li {
     display: inline-block;
-    margin: 0.5rem;
 }
 
 #playerbanner li:last-child {
