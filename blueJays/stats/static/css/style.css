@@ -317,14 +317,30 @@ footer p {
     border-bottom-right-radius: 10px;
 }
 
+#teambanner {
+    color: white;
+}
+
 #teambanner li {
     display: inline-block;
     margin: 0.5rem;
 }
 
+#teambanner li article {
+    border: none
+}
+
+#playerbanner {
+    color: white;
+}
+
 #playerbanner li {
     display: inline-block;
     margin: 0.5rem;
+}
+
+#playerbanner li article {
+    border: none
 }
 
 .btn-group button {
