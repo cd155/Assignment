@@ -12,15 +12,15 @@
 {% endfor %}
 
 <h2>News</h2>
-<section>  
-  {% for i in news_n %}
+<section>
+  {% for item in news_lst %}
   <article id="news">
-    <img src="{% static 'img/news_holder.png' %}">
+    <img src="{{item.image_url}}">
     <p>
-      <a href="#" > news links </a>
+      <a href="{{item.link}}"> {{item.title}} </a>
     </p>
     <p>
-      David Adler - Dec 2 2022
+      {{item.creator}} - {{item.date}}
     </p>
   </article>
   {% endfor %}
