@@ -1,16 +1,19 @@
 {% load static %}
-<ul id="teambanner">
-    <li><img src="{% static 'img/news_holder.png' %}" width="80" height="80"></li>
-    <li>
-        <article>
-            <h3>Team Name</h3>
-            <p>ranking</p>
-        </article>
-    </li>
-    <li>
+<div id="banner">
+    <div class="alignleft">
+        <div class="img-text-container">
+            <img src="{% static 'img/news_holder.png' %}" width="80" height="80">
+            <div>
+                <p>Paris is one of the </p>
+                <p>Paris is one of the </p>
+            </div>
+        </div>
+    </div>
+    <div class="alignright">
+        <br>
         <div class="btn-group">
             <button>Hitters</button>
             <button>Pitchers</button>
         </div>
-    </li>
-</ul>
+    </div>
+</div>
