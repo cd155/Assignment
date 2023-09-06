@@ -317,37 +317,8 @@ footer p {
     border-bottom-right-radius: 10px;
 }
 
-#teambanner {
-    margin: 0;
+#banner {
     color: white;
-}
-
-#teambanner li {
-    display: inline-block;
-}
-
-#teambanner li:last-child {
-    float: right;
-}
-
-#teambanner li article {
-    border: none
-}
-
-#playerbanner {
-    color: white;
-}
-
-#playerbanner li {
-    display: inline-block;
-}
-
-#playerbanner li:last-child {
-    float: right;
-}
-
-#playerbanner li article {
-    border: none
 }
 
 .btn-group button {
@@ -386,4 +357,18 @@ footer p {
 .btn-group button:hover {
     background-color: #3e9fca;
     color: white;
+}
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}
+
+.img-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
