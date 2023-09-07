@@ -1,38 +1,28 @@
 <table id="standing">
     <tr>
-        <th>{{title}}</th>
+        <th>{{division_data.division_abbr}}</th>
+        <th></th>
         <th>W</th>
         <th>L</th>
         <th>Pct</th>
         <th>GB</th>
+        <th>Home</th>
+        <th>Away</th>
         <th>L10</th>
-        <th>DIFF</th>
     </tr>
+    {% for team in division_data.teams %}
     <tr>
-        <td>NYY </td>
-        <td>99</td>
-        <td>63</td>
-        <td>0.611</td>
-        <td>-</td>
-        <td>5-5</td>
-        <td>240</td>
+        <td>
+            <img src="{{team.team_log_url}}">
+        </td>
+        <td>{{team.team_abbr}}</td>
+        <td>{{team.leagueRecord.wins}}</td>
+        <td>{{team.leagueRecord.losses}}</td>
+        <td>{{team.leagueRecord.pct}}</td>
+        <td>{{team.gamesBack}}</td>
+        <td>{{team.records.home.wins}}-{{team.records.home.losses}}</td>
+        <td>{{team.records.away.wins}}-{{team.records.away.losses}}</td>
+        <td>{{team.records.lastTen.wins}}-{{team.records.lastTen.losses}}</td>
     </tr>
-    <tr>
-        <td>NYY </td>
-        <td>99</td>
-        <td>63</td>
-        <td>0.611</td>
-        <td>-</td>
-        <td>5-5</td>
-        <td>240</td>
-    </tr>
-    <tr>
-        <td>NYY </td>
-        <td>99</td>
-        <td>63</td>
-        <td>0.611</td>
-        <td>-</td>
-        <td>5-5</td>
-        <td>240</td>
-    </tr>
+    {% endfor %}
 </table>
