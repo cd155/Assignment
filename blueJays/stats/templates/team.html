@@ -3,7 +3,7 @@
 
 {% block content %}
 
-{% include 'partials/_teambanner.html' with data="something"%}
-{% include 'partials/_standing.html' with data="something"%}
+{% include 'partials/_teambanner.html' with team_data=team_data%}
+{% include 'partials/_roster_hitter.html' with roster_data=roster_data%}
 
 {% endblock %}
