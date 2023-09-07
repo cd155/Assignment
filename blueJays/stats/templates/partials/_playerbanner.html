@@ -2,17 +2,27 @@
 <div id="banner">
     <div class="alignleft">
         <div class="img-text-container">
-            <img src="{{player_data.head_shot_url}}" width="150" height="150" >
+            <img src="{{player_data.head_shot_url}}" width="150" height="150">
             <div>
                 <p>{{player_data.fullName}} </p>
                 <p>{{player_data.primaryPosition.abbreviation}}</p>
             </div>
         </div>
     </div>
-    <p class="alignright">
-        <br>{{player_data.currentAge}} - 
-        {{player_data.height}} - 
-        {{player_data.weight}} - 
-        {{player_data.draftYear}}
-    </p>
+    <table class="alignright" id="playerinfo">
+        <tr>
+            <th>B/T</th>
+            <th>Age</th>
+            <th>H</th>
+            <th>W</th>
+            <th>Drafted</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{player_data.currentAge}}</td>
+            <td>{{player_data.height}}</td>
+            <td>{{player_data.weight}}</td>
+            <td>{{player_data.draftYear}}</td>
+        </tr>
+    </table>
 </div>
