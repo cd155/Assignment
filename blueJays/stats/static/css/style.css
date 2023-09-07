@@ -322,6 +322,10 @@ footer p {
     border-bottom-right-radius: 10px;
 }
 
+#standing tr:nth-child(odd) td{
+    background-color: #f7f7f7;
+}
+
 #banner {
     color: white;
 }
