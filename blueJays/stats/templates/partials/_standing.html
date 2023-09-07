@@ -15,7 +15,9 @@
         <td>
             <img src="{{team.team_log_url}}">
         </td>
-        <td>{{team.team_abbr}}</td>
+        <td>
+            <a href="{% url 'team' pk=team.team_id %}">{{team.team_abbr}}</a>
+        </td>
         <td>{{team.leagueRecord.wins}}</td>
         <td>{{team.leagueRecord.losses}}</td>
         <td>{{team.leagueRecord.pct}}</td>
