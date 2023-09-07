@@ -1,0 +1,50 @@
+<table id="standing">
+    <tr>
+        <th>Year</th>
+        <th>Team</th>
+        <th></th>
+        <th>G</th>
+        <th>PA</th>
+        <th>AB</th>
+        <th>R</th>
+        <th>H</th>
+        <th>2B</th>
+        <th>3B</th>
+        <th>HR</th>
+        <th>RBI</th>
+        <th>SB</th>
+        <th>BB</th>
+        <th>SO</th>
+        <th>OBP</th>
+        <th>SLG</th>
+        <th>OPS</th>
+    </tr>
+    {% for player in roster_data %}
+    <tr>
+        <td>{{player.position.abbreviation}}</td>
+        <td>{{player.jerseyNumber}}</td>
+        <td>
+            <img src="{{player.head_shot_url}}">
+        </td>
+        <td>
+            <a href="{% url 'player' pk=player.person.id %}">
+                {{player.person.fullName}}
+            </a>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    {% endfor %}
+</table>
