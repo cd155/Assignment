@@ -2,14 +2,17 @@
 <div id="banner">
     <div class="alignleft">
         <div class="img-text-container">
-            <img src="{% static 'img/news_holder.png' %}" width="80" height="80">
+            <img src="{{player_data.head_shot_url}}" width="150" height="150" >
             <div>
-                <p>Paris is one of the </p>
-                <p>Paris is one of the </p>
+                <p>{{player_data.fullName}} </p>
+                <p>{{player_data.primaryPosition.abbreviation}}</p>
             </div>
         </div>
     </div>
     <p class="alignright">
-        <br>more detail
+        <br>{{player_data.currentAge}} - 
+        {{player_data.height}} - 
+        {{player_data.weight}} - 
+        {{player_data.draftYear}}
     </p>
 </div>
