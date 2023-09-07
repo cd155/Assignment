@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 url = 'https://statsapi.mlb.com'
 url_log = 'https://www.mlbstatic.com/team-logos'
+url_news = 'https://www.mlb.com/feeds/news/rss.xml'
+url_divisions = f'{url}/api/v1/standings?leagueId=103,104'
 
 def home(request):
     return render(request, 'index.html', 
@@ -19,9 +21,17 @@ def player(request, pk):
     return render(request, 'player.html', {})
 
 
+def this_team(id):
+    team_data = requests.get(f'{url}/api/v1/teams/{id}')
+    roster_data = requests.get(f'{url}/api/v1/teams/{id}/roster')
+
+    team = team_data.json()['teams'][0]
+    roster = roster_data.json()['roster']
+
+
 # get news feeds data
 def news():
-    news_feeds = requests.get('https://www.mlb.com/feeds/news/rss.xml')
+    news_feeds = requests.get(url_news)
     tree = ElementTree.fromstring(news_feeds.content)
 
     news_lst = []
@@ -43,7 +53,7 @@ def news():
 
 
 def divisions():
-    data = requests.get(url+'/api/v1/standings?leagueId=103,104')
+    data = requests.get(url_divisions)
     standings = data.json()["records"]
     standing_lst = []
     for standing in standings:
@@ -69,6 +79,7 @@ def divisions():
 
     return data_process(standing_lst)
 
+
 # change list with 6 items to list with 3 items
 def data_process(lst):
     good = []
@@ -79,17 +90,20 @@ def data_process(lst):
         good.append(tup)
     return good
 
+
 # return division short name
 def division_name_helper(link):
-    data = requests.get(url+link)
+    data = requests.get(f'{url}{link}')
     division = (data.json()['divisions'])[0]
     return division['nameShort']
 
+
 # return team short name
 def team_name_helper(link):
-    data = requests.get(url+link)
+    data = requests.get(f'{url}{link}')
     team = (data.json()['teams'])[0]
     return team['abbreviation']
+
 
 # return last ten records
 def team_record_helper(lst):
