@@ -382,3 +382,17 @@ footer p {
     align-items: center;
     justify-content: center;
 }
+
+#playerinfo {
+    margin: 1rem;
+    text-align: left;
+}
+
+#playerinfo th {
+    font-size: 1rem;
+    color: #3e9fca;
+}
+
+#playerinfo td {
+    padding-right: 2rem;
+}
