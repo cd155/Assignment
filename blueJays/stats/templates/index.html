@@ -4,10 +4,10 @@
 {% block content %}
 
 <h2>Teams</h2>
-{% for i in board_n %}
+{% for l, r in divisions_data %}
 <section>
-  {% include 'partials/_standing.html' with title="AL East"%}
-  {% include 'partials/_standing.html' with title="AL East"%}
+  {% include 'partials/_standing.html' with division_data=l%}
+  {% include 'partials/_standing.html' with division_data=r%}
 </section>
 {% endfor %}
 
