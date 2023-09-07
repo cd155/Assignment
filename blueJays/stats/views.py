@@ -54,6 +54,7 @@ def divisions():
         team_list = []
         for team in standing['teamRecords']:
             team_dict = {
+                'team_id': team['team']['id'],
                 'team_abbr': team['team']['name'],
                 'team_log_url': f"{url_log}/{team['team']['id']}.svg",
                 'leagueRecord': team['leagueRecord'],
