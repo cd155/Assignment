@@ -281,12 +281,13 @@ footer p {
 }
 
 #standing {
-    text-align: left;
+    text-align: center;
     width: 100%;
     border-collapse: collapse;
 }
 
 #standing th {
+    font-size: 1rem;
     color: white;
     background-color: #3e9fca;
 }
@@ -297,7 +298,11 @@ footer p {
     background-color: white;
 }
 
-#standing tr td img{
+#standing tr:nth-child(odd) td {
+    background-color: #f7f7f7;
+}
+
+#standing tr td img {
     width: 30px;
     height: 30px;
 }
@@ -320,10 +325,6 @@ footer p {
 
 #standing tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
-}
-
-#standing tr:nth-child(odd) td{
-    background-color: #f7f7f7;
 }
 
 #banner {
