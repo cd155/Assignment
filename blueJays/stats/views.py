@@ -6,7 +6,6 @@ url = 'https://statsapi.mlb.com'
 url_log = 'https://www.mlbstatic.com/team-logos'
 
 def home(request):
-    divisions()
     return render(request, 'index.html', 
         {'divisions_data': divisions(), 
          'news_lst': news()})
