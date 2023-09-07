@@ -2,10 +2,10 @@
 <div id="banner">
     <div class="alignleft">
         <div class="img-text-container">
-            <img src="{% static 'img/news_holder.png' %}" width="80" height="80">
+            <img src="{{team_data.team_log_url}}" width="100" height="100">
             <div>
-                <p>Paris is one of the </p>
-                <p>Paris is one of the </p>
+                <h2>{{team_data.name}} - {{team_data.abbreviation}}</h2>
+                <p>{{team_data.division.name}}</p>
             </div>
         </div>
     </div>
