@@ -6,7 +6,9 @@ url = 'https://statsapi.mlb.com'
 url_log = 'https://www.mlbstatic.com/team-logos'
 url_news = 'https://www.mlb.com/feeds/news/rss.xml'
 url_divisions = f'{url}/api/v1/standings?leagueId=103,104'
-url_head_shots = 'https://content.mlb.com/images/headshots/current/60x60/'
+url_head_shot = 'https://content.mlb.com/images/headshots/current/60x60/'
+url_team = f'{url}/api/v1/teams/'
+url_player = f'{url}/api/v1/people/'
 
 def home(request):
     return render(request, 'index.html', {
@@ -23,22 +25,29 @@ def team(request, pk):
     })
 
 
-def player(request, pk):
-    return render(request, 'player.html', {})
-
-
 def this_team(pk):
-    team_data = requests.get(f'{url}/api/v1/teams/{pk}')
-    roster_data = requests.get(f'{url}/api/v1/teams/{pk}/roster')
+    team_data = requests.get(f'{url_team}{pk}')
+    roster_data = requests.get(f'{url_team}{pk}/roster')
 
     team = team_data.json()['teams'][0]
     team['team_log_url'] = f"{url_log}/{team['id']}.svg"
 
     roster = roster_data.json()['roster']
     for player in roster:
-        player['head_shot_url'] = f"{url_head_shots}{player['person']['id']}.png"
+        player['head_shot_url'] = f"{url_head_shot}{player['person']['id']}.png"
 
     return (team, roster)
+
+
+def player(request, pk):
+    return render(request, 'player.html', {'player_data': this_player(pk)})
+
+
+def this_player(pk):
+    player_data = requests.get(f'{url_player}{pk}')
+    player = player_data.json()['people'][0]
+    player['head_shot_url'] = f"{url_head_shot}{player['id']}@3x.png"
+    return player
 
 # get news feeds data
 def news():
