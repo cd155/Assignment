@@ -34,7 +34,7 @@ def this_team(pk):
 
     roster = roster_data.json()['roster']
     for player in roster:
-        player['head_shot_url'] = f"{url_head_shot}{player['person']['id']}.png"
+        player['head_shot_url'] = f"{url_head_shot}{player['person']['id']}@2x.png"
 
     return (team, roster)
 
