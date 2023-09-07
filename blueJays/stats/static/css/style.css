@@ -114,8 +114,8 @@ article ul {
 }
 
 main {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 /* main article {
@@ -281,10 +281,7 @@ footer p {
 }
 
 #standing {
-    background-size: cover;
-    background-position: 75%;
-    min-height: 200px;
-    text-align: center;
+    text-align: left;
     width: 100%;
     border-collapse: collapse;
 }
@@ -295,11 +292,17 @@ footer p {
 }
 
 #standing tr td {
+    font-size: 1rem;
     color: black;
     background-color: white;
 }
 
-#standing tr td:first-child {
+#standing tr td img{
+    width: 30px;
+    height: 30px;
+}
+
+#standing tr td:nth-child(-n + 2) {
     color: #244d87;
 }
 
