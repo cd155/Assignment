@@ -26,6 +26,11 @@ def home(request):
     })
 
 
+def leaders(request):
+    return render(request, 'leaderboards.html', {
+        'leaders_data': {}, 
+    })
+
 def team(request, pk):
     player_type = "hitting"
     if request.GET.get('player_type') == 'pitching':
