@@ -4,11 +4,18 @@
 {% block content %}
 
 <h2>Leaderboards</h2>
-{% for l, m, r in leaders_data %}
+{% for hitting, pitching, catching in leaders_hr_so %}
 <section>
-  {% include 'partials/_leader.html' with leader_data=l%}
-  {% include 'partials/_leader.html' with leader_data=m%}
-  {% include 'partials/_leader.html' with leader_data=r%}
+  {% include 'partials/_leader.html' with leader_data=hitting%}
+  {% include 'partials/_leader.html' with leader_data=pitching%}
+  {% include 'partials/_leader.html' with leader_data=catching%}
+</section>
+{% endfor %}
+
+{% for hitting, pitching in leaders_ops_era %}
+<section>
+  {% include 'partials/_leader.html' with leader_data=hitting%}
+  {% include 'partials/_leader.html' with leader_data=pitching%}
 </section>
 {% endfor %}
 
