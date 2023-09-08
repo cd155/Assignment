@@ -25,7 +25,9 @@
         <td>
             <img src="{{record.team_log_url}}" width="30" height="30">
         </td>
-        <td>{{record.team.name}}</td>
+        <td>
+            <a href="{% url 'team' pk=record.team.id %}?player_type=hitting">{{record.team.name}}</a>
+        </td>
         <td>{{record.stat.gamesPlayed}}</td>
         <td>{{record.stat.plateAppearances}}</td>
         <td>{{record.stat.atBats}}</td>
