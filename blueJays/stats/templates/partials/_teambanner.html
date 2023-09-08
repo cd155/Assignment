@@ -5,15 +5,30 @@
             <img src="{{team_data.team_log_url}}" width="100" height="100">
             <div>
                 <h2>{{team_data.name}} - {{team_data.abbreviation}}</h2>
-                <p>{{team_data.division.name}}</p>
+                <p>{{team_data.division.name}} (2023)</p>
             </div>
         </div>
     </div>
     <div class="alignright">
         <br>
         <div class="btn-group">
-            <button>Hitters</button>
-            <button>Pitchers</button>
+            {% if player_type == 'hitting' %}
+            <button style="background-color:#3e9fca" >
+                <a href="{% url 'team' pk=team_data.id %}?player_type=hitting"
+                style="color:white">Hitters</a>
+            </button>
+            <button style="background-color:white">
+                <a href="{% url 'team' pk=team_data.id %}?player_type=pitching">Pitchers</a>
+            </button>
+            {% else %}
+            <button style="background-color:white">
+                <a href="{% url 'team' pk=team_data.id %}?player_type=hitting">Hitters</a>
+            </button>
+            <button style="background-color:#3e9fca">
+                <a href="{% url 'team' pk=team_data.id %}?player_type=pitching"
+                style="color:white">Pitchers</a>
+            </button>
+            {% endif %}   
         </div>
     </div>
 </div>
