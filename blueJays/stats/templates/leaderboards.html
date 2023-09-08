@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2>Leaderboards</h2>
+{% for l, m, r in leaders_data %}
+<section>
+  {% include 'partials/_leader.html' with leader_data=l%}
+  {% include 'partials/_leader.html' with leader_data=m%}
+  {% include 'partials/_leader.html' with leader_data=r%}
+</section>
+{% endfor %}
+
+{% endblock %}
