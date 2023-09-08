@@ -1,6 +1,7 @@
 import requests
 from xml.etree import ElementTree
 from django.shortcuts import render
+from django.http import HttpResponseNotFound
 
 url = 'https://statsapi.mlb.com'
 url_log = 'https://www.mlbstatic.com/team-logos'
@@ -11,9 +12,17 @@ url_team = f'{url}/api/v1/teams/'
 url_player = f'{url}/api/v1/people/'
 
 def home(request):
+    news_feeds = requests.get(url_news)
+    if not news_feeds.ok:
+        return HttpResponseNotFound("Source not found")   
+
+    divisions_data = requests.get(url_divisions)
+    if not divisions_data.ok:
+        return HttpResponseNotFound("Source not found")   
+
     return render(request, 'index.html', {
-        'divisions_data': divisions(), 
-        'news_lst': news()
+        'divisions_data': divisions(divisions_data), 
+        'news_lst': news(news_feeds)
     })
 
 
@@ -22,7 +31,15 @@ def team(request, pk):
     if request.GET.get('player_type') == 'pitching':
         player_type = 'pitching'
 
-    team, roster = this_team(pk)
+    team_data = requests.get(f'{url_team}{pk}')
+    roster_data = requests.get(f'{url_team}{pk}/roster/Active?hydrate=person(stats(type=season))')
+    if not team_data.ok:
+        return HttpResponseNotFound("Source not found")   
+    
+    if not roster_data.ok:
+        return HttpResponseNotFound("Source not found")  
+
+    team, roster = this_team(team_data, roster_data)
 
     return render(request, 'team.html', {
         'team_data': team,
@@ -31,10 +48,7 @@ def team(request, pk):
     })
 
 
-def this_team(pk):
-    team_data = requests.get(f'{url_team}{pk}')
-    roster_data = requests.get(f'{url_team}{pk}/roster/Active?hydrate=person(stats(type=season))')
-
+def this_team(team_data, roster_data):
     team = team_data.json()['teams'][0]
     team['team_log_url'] = f"{url_log}/{team['id']}.svg"
 
@@ -66,7 +80,11 @@ def player(request, pk):
     if request.GET.get('player_type') == 'pitching':
         player_type = 'pitching'
 
-    player_data, records = this_player(pk, player_type)
+    player_data = requests.get(f'{url_player}{pk}?hydrate=stats(group=[{player_type}],type=[yearByYear])')
+    if not player_data.ok:
+        return HttpResponseNotFound("Source not found") 
+
+    player_data, records = this_player(player_data)
 
     return render(request, 'player.html', {
         'player_data': player_data,
@@ -74,8 +92,7 @@ def player(request, pk):
         })
 
 
-def this_player(pk, player_type):
-    player_data = requests.get(f'{url_player}{pk}?hydrate=stats(group=[{player_type}],type=[yearByYear])')
+def this_player(player_data):
     player = player_data.json()['people'][0]
     player['head_shot_url'] = f"{url_head_shot}{player['id']}@3x.png"
 
@@ -86,15 +103,15 @@ def this_player(pk, player_type):
             record['team_log_url'] = f"{url_log}/{record['team']['id']}.svg"
         else:
             # some records don't have 'team' key
-            record['team'] = {'id': 0, 'name': ''}
+            record['team'] = {'id': 0, 'name': f"total in {record['season']}"}
 
     player['current_team_id'] = records[-1]['team']['id']
     player['current_team_name'] = records[-1]['team']['name']
     return player, records
 
 # get news feeds data
-def news():
-    news_feeds = requests.get(url_news)
+def news(news_feeds):
+
     tree = ElementTree.fromstring(news_feeds.content)
 
     news_lst = []
@@ -115,8 +132,7 @@ def news():
     return news_lst
 
 
-def divisions():
-    data = requests.get(url_divisions)
+def divisions(data):
     standings = data.json()["records"]
     standing_lst = []
     for standing in standings:
@@ -157,6 +173,8 @@ def data_process(lst):
 # return division short name
 def division_name_helper(link):
     data = requests.get(f'{url}{link}')
+    if not data.ok:
+        return {}
     division = (data.json()['divisions'])[0]
     return division['nameShort']
 
@@ -164,6 +182,8 @@ def division_name_helper(link):
 # return team short name
 def team_name_helper(link):
     data = requests.get(f'{url}{link}')
+    if not data.ok:
+        return {}
     team = (data.json()['teams'])[0]
     return team['abbreviation']
 
