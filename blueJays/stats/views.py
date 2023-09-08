@@ -156,9 +156,7 @@ def news(news_feeds):
     news_lst = []
 
     # the current setting only show four news feeds
-    i = 0
-    for item in tree[0].findall('item'):
-        if i>3: break
+    for item in tree[0].findall('item')[0:4]:
         news_dict = {
             'title': item.find('title').text,
             'link': item.find('link').text,
@@ -167,7 +165,6 @@ def news(news_feeds):
             'image_url': item.find('image').attrib['href'],
         }
         news_lst.append(news_dict)
-        i+=1
     return news_lst
 
 
