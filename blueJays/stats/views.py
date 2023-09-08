@@ -62,14 +62,28 @@ def filter_roster(roster, player_type):
 
 
 def player(request, pk):
-    return render(request, 'player.html', {'player_data': this_player(pk)})
+    player_type = "hitting"
+    if request.GET.get('player_type') == 'pitching':
+        player_type = 'pitching'
+
+    player_data, records = this_player(pk, player_type)
+
+    return render(request, 'player.html', {
+        'player_data': player_data,
+        'records': records
+        })
 
 
-def this_player(pk):
-    player_data = requests.get(f'{url_player}{pk}')
+def this_player(pk, player_type):
+    player_data = requests.get(f'{url_player}{pk}?hydrate=stats(group=[{player_type}],type=[yearByYear])')
     player = player_data.json()['people'][0]
     player['head_shot_url'] = f"{url_head_shot}{player['id']}@3x.png"
-    return player
+
+    records = player['stats'][0]['splits']
+
+    player['current_team_id'] = records[-1]['team']['id']
+    player['current_team_name'] = records[-1]['team']['name']
+    return player, records
 
 # get news feeds data
 def news():
