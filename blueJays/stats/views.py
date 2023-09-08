@@ -26,7 +26,8 @@ def team(request, pk):
 
     return render(request, 'team.html', {
         'team_data': team,
-        'roster_data': filter_roster(roster, player_type)
+        'roster_data': filter_roster(roster, player_type),
+        'player_type': player_type
     })
 
 
