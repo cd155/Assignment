@@ -1,0 +1,50 @@
+<table id="standing">
+    <tr>
+        <th>Pos</th>
+        <th>#</th>
+        <th>Player</th>
+        <th></th>
+        <th>Age</th>
+        <th>B</th>
+        <th>T</th>
+        <th>PA</th>
+        <th>H</th>
+        <th>2B</th>
+        <th>3B</th>
+        <th>HR</th>
+        <th>SB</th>
+        <th>SO%</th>
+        <th>BB%</th>
+        <th>AVG</th>
+        <th>OBP</th>
+        <th>OPS</th>
+    </tr>
+    {% for player in roster_data %}
+    <tr>
+        <td>{{player.position.abbreviation}}</td>
+        <td>{{player.jerseyNumber}}</td>
+        <td>
+            <img src="{{player.head_shot_url}}" width="50" height="50">
+        </td>
+        <td>
+            <a href="{% url 'player' pk=player.person.id %}">
+                {{player.person.fullName}}
+            </a>
+        </td>
+        <td>{{player.person.currentAge}}</td>
+        <td>{{player.person.batSide.code}}</td>
+        <td>{{player.person.pitchHand.code}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.plateAppearances}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.hits}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.doubles}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.triples}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.homeRuns}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.stolenBases}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.strikeOuts}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.baseOnBalls}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.avg}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.obp}}</td>
+        <td>{{player.person.stats.0.splits.0.stat.ops}}</td>
+    </tr>
+    {% endfor %}
+</table>
