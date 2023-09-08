@@ -10,7 +10,7 @@ url_divisions = f'{domain}/api/v1/standings?leagueId=103,104'
 url_head_shot = 'https://content.mlb.com/images/headshots/current/60x60/'
 url_team = f'{domain}/api/v1/teams/'
 url_player = f'{domain}/api/v1/people/'
-url_leader = f'{domain}'
+url_leader = f'{domain}/api/v1/stats/leaders?leaderCategories='
 
 def home(request):
     news_feeds = requests.get(url_news)
@@ -28,9 +28,42 @@ def home(request):
 
 
 def leaders(request):
+    leaders_hr_raw = requests.get(f'{url_leader}homeRuns')
+    leaders_so_raw = requests.get(f'{url_leader}strikeOuts')
+
+    leaders_ops_raw = requests.get(f'{url_leader}ops')
+    leaders_era_raw = requests.get(f'{url_leader}era')
+
+    if not leaders_hr_raw.ok or not leaders_ops_raw.ok or \
+       not leaders_era_raw.ok or not leaders_so_raw.ok :
+        return HttpResponseNotFound("Source not found")   
+    
+    leaders_hr = process_leaders(leaders_hr_raw.json()['leagueLeaders'], 'HR')
+    leaders_so = process_leaders(leaders_so_raw.json()['leagueLeaders'], 'SO')
+    leaders_ops = process_leaders(leaders_ops_raw.json()['leagueLeaders'], 'OPS')
+    leaders_era = process_leaders(leaders_era_raw.json()['leagueLeaders'], 'ERA')
+
     return render(request, 'leaderboards.html', {
-        'leaders_data': {}, 
-    })
+        'leaders_hr_so': [leaders_hr, leaders_so],
+        'leaders_ops_era': [leaders_ops, leaders_era]})
+
+def process_leaders(leagueLeaders, short_name):
+    for leagueLeader in leagueLeaders:
+        if leagueLeader['statGroup'] == 'hitting':
+            leagueLeader['statGroup_name'] = 'Hitters'
+        
+        if leagueLeader['statGroup'] == 'pitching':
+            leagueLeader['statGroup_name'] = 'Pitchers'
+
+        if leagueLeader['statGroup'] == 'catching':
+            leagueLeader['statGroup_name'] = 'Catchers'
+        
+        leagueLeader['leaderCategory_short_name'] = short_name
+
+        for leader in leagueLeader['leaders']:
+            leader['head_shot_url'] = f"{url_head_shot}{leader['person']['id']}@2x.png"
+
+    return leagueLeaders
 
 def team(request, pk):
     player_type = "hitting"
@@ -103,13 +136,13 @@ def this_player(player_data):
     player['head_shot_url'] = f"{url_head_shot}{player['id']}@3x.png"
 
     records = player['stats'][0]['splits']
-
-    for record in records:
+    records_copy = records.copy()
+    for record in records_copy:
         if 'team' in record:
             record['team_log_url'] = f"{url_log}/{record['team']['id']}.svg"
         else:
             # some records don't have 'team' key
-            record['team'] = {'id': 0, 'name': f"total in {record['season']}"}
+            records.remove(record)
 
     player['current_team_id'] = records[-1]['team']['id']
     player['current_team_name'] = records[-1]['team']['name']
