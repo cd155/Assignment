@@ -23,3 +23,28 @@ Show player history
 ## Leaderboards
 Show current statistical leaders (eg: HR, OPS, ERA, Strikeouts)
 <img src="https://github.com/cd155/assignment/assets/16947266/72209fe7-0deb-494d-b19e-f4c616494bb7" alt="" width="600"/>
+
+# How to run this app
+python virtual environment
+
+1. Clone the repository, then go to the root directory
+```bash
+cd assignment
+```
+2. Run those commands
+```bash
+# Create a virtual environment folder
+python -m venv .venv
+
+# Activate virtual environment
+source .venv/bin/activate
+
+# install all required python packages
+pip install -r requirements.txt
+```
+3. Run the app in the local hoster
+```bash
+python manage.py runserver
+```
+
+(If you use nixos, you can use `nix-shell shell.nix`)
