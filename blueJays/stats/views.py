@@ -18,16 +18,21 @@ def home(request):
 
 
 def team(request, pk):
+    player_type = "hitting"
+    if request.GET.get('player_type') == 'pitching':
+        player_type = 'pitching'
+
     team, roster = this_team(pk)
+
     return render(request, 'team.html', {
         'team_data': team,
-        'roster_data': roster
+        'roster_data': filter_roster(roster, player_type)
     })
 
 
 def this_team(pk):
     team_data = requests.get(f'{url_team}{pk}')
-    roster_data = requests.get(f'{url_team}{pk}/roster')
+    roster_data = requests.get(f'{url_team}{pk}/roster/Active?hydrate=person(stats(type=season))')
 
     team = team_data.json()['teams'][0]
     team['team_log_url'] = f"{url_log}/{team['id']}.svg"
@@ -37,6 +42,22 @@ def this_team(pk):
         player['head_shot_url'] = f"{url_head_shot}{player['person']['id']}@2x.png"
 
     return (team, roster)
+
+
+# separate hitters and pitchers
+def filter_roster(roster, player_type):
+    hitters = []
+    pitchers = []
+    for player in roster:
+        if player['position']['code']=='1':
+            pitchers.append(player)
+        else:
+            hitters.append(player)
+    
+    if player_type == 'pitching':
+        return pitchers
+    else:
+        return hitters
 
 
 def player(request, pk):
