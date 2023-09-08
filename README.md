@@ -43,6 +43,8 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 3. Run the app in the local hoster
+
+`cd blueJays` make sure you are in the project folder
 ```bash
 python manage.py runserver
 ```
