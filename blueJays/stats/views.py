@@ -3,13 +3,14 @@ from xml.etree import ElementTree
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 
-url = 'https://statsapi.mlb.com'
+domain = 'https://statsapi.mlb.com'
 url_log = 'https://www.mlbstatic.com/team-logos'
 url_news = 'https://www.mlb.com/feeds/news/rss.xml'
-url_divisions = f'{url}/api/v1/standings?leagueId=103,104'
+url_divisions = f'{domain}/api/v1/standings?leagueId=103,104'
 url_head_shot = 'https://content.mlb.com/images/headshots/current/60x60/'
-url_team = f'{url}/api/v1/teams/'
-url_player = f'{url}/api/v1/people/'
+url_team = f'{domain}/api/v1/teams/'
+url_player = f'{domain}/api/v1/people/'
+url_leader = f'{domain}'
 
 def home(request):
     news_feeds = requests.get(url_news)
@@ -177,7 +178,7 @@ def data_process(lst):
 
 # return division short name
 def division_name_helper(link):
-    data = requests.get(f'{url}{link}')
+    data = requests.get(f'{domain}{link}')
     if not data.ok:
         return {}
     division = (data.json()['divisions'])[0]
@@ -186,7 +187,7 @@ def division_name_helper(link):
 
 # return team short name
 def team_name_helper(link):
-    data = requests.get(f'{url}{link}')
+    data = requests.get(f'{domain}{link}')
     if not data.ok:
         return {}
     team = (data.json()['teams'])[0]
