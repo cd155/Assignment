@@ -1,20 +1,20 @@
 <table id="standing">
     <tr>
         <th></th>
-        <th>{{data.leaderCategory}}</th>
+        <th>{{leader_data.statGroup_name}}</th>
         <th></th>
-        <th>{{data.leaderCategory}}</th>
+        <th>{{leader_data.leaderCategory_short_name}}</th>
     </tr>
-    {% for team in division_data.teams %}
+    {% for leader in leader_data.leaders %}
     <tr>
-        <td>{{data.rank}}</td>
+        <td>{{leader.rank}}</td>
         <td>
-            <img src="{{data.head_shot_url}}" width="30" height="30">
+            <img src="{{leader.head_shot_url}}" width="30" height="30">
         </td>
         <td>
-            <a href="{% url 'player' pk=data.person.id %}?player_type={{player_type}}">{{data.person.fullName}}</a>
+            <a href="{% url 'player' pk=leader.person.id %}?player_type={{leader_data.statGroup}}">{{leader.person.fullName}}</a>
         </td>
-        <td>{{data.value}}</td>
+        <td>{{leader.value}}</td>
     </tr>
     {% endfor %}
 </table>
