@@ -27,7 +27,7 @@
             <img src="{{player.head_shot_url}}" width="50" height="50">
         </td>
         <td>
-            <a href="{% url 'player' pk=player.person.id %}">
+            <a href="{% url 'player' pk=player.person.id %}?player_type={{player_type}}">
                 {{player.person.fullName}}
             </a>
         </td>
