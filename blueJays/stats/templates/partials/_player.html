@@ -19,32 +19,28 @@
         <th>SLG</th>
         <th>OPS</th>
     </tr>
-    {% for player in roster_data %}
+    {% for record in records %}
     <tr>
-        <td>{{player.position.abbreviation}}</td>
-        <td>{{player.jerseyNumber}}</td>
+        <td>{{record.season}}</td>
         <td>
-            <img src="{{player.head_shot_url}}">
+            <img src="{{record.team_log_url}}" width="30" height="30">
         </td>
-        <td>
-            <a href="{% url 'player' pk=player.person.id %}">
-                {{player.person.fullName}}
-            </a>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{record.team.name}}</td>
+        <td>{{record.stat.gamesPlayed}}</td>
+        <td>{{record.stat.plateAppearances}}</td>
+        <td>{{record.stat.atBats}}</td>
+        <td>{{record.stat.runs}}</td>
+        <td>{{record.stat.hits}}</td>
+        <td>{{record.stat.doubles}}</td>
+        <td>{{record.stat.triples}}</td>
+        <td>{{record.stat.homeRuns}}</td>
+        <td>{{record.stat.rbi}}</td>
+        <td>{{record.stat.stolenBases}}</td>
+        <td>{{record.stat.babip}}</td>
+        <td>{{record.stat.strikeOuts}}</td>
+        <td>{{record.stat.obp}}</td>
+        <td>{{record.stat.slg}}</td>
+        <td>{{record.stat.ops}}</td>
     </tr>
     {% endfor %}
 </table>
