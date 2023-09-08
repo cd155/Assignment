@@ -81,6 +81,9 @@ def this_player(pk, player_type):
 
     records = player['stats'][0]['splits']
 
+    for record in records:
+        record['team_log_url'] = f"{url_log}/{record['team']['id']}.svg"
+
     player['current_team_id'] = records[-1]['team']['id']
     player['current_team_name'] = records[-1]['team']['name']
     return player, records
