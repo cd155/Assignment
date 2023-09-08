@@ -16,7 +16,7 @@
             <img src="{{team.team_log_url}}" width="30" height="30">
         </td>
         <td>
-            <a href="{% url 'team' pk=team.team_id %}">{{team.team_abbr}}</a>
+            <a href="{% url 'team' pk=team.team_id %}?player_type=hitting">{{team.team_abbr}}</a>
         </td>
         <td>{{team.leagueRecord.wins}}</td>
         <td>{{team.leagueRecord.losses}}</td>
