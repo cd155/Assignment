@@ -82,7 +82,11 @@ def this_player(pk, player_type):
     records = player['stats'][0]['splits']
 
     for record in records:
-        record['team_log_url'] = f"{url_log}/{record['team']['id']}.svg"
+        if 'team' in record:
+            record['team_log_url'] = f"{url_log}/{record['team']['id']}.svg"
+        else:
+            # some records don't have 'team' key
+            record['team'] = {'id': 0, 'name': ''}
 
     player['current_team_id'] = records[-1]['team']['id']
     player['current_team_name'] = records[-1]['team']['name']
