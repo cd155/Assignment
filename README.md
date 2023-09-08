@@ -6,10 +6,13 @@ See live demo at [https://mlb.softifacts.com](https://mlb.softifacts.com)
 ## Homepage 
 Show divisional standings and recent news stories.
 
-image1
+<img src="https://github.com/cd155/assignment/assets/16947266/997b8b36-ea1f-4380-b743-fb155a99e3f6" alt="drawing" width="600"/>
+
 
 ## Team page
 Show current roster and player stats
+
+
 
 ## Filter for different players
 Show players based on their roles (eg: hitters, pitchers)
